@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Fantástica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .nav-link { text-align: center; }
+        .tab-content { padding: 1rem; }
+        .spinner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="spinner" class="spinner-container">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <div id="main-content" class="container-fluid d-none">
+        <h1 class="text-center my-4">Livraria Fantástica</h1>
+
+        <nav class="nav nav-pills nav-justified bg-light py-2 sticky-top">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="pill" data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true" data-bs-title="Página Inicial">
+                <i class="fas fa-home d-block d-md-inline"></i>
+                <span class="d-block d-md-inline">Início</span>
+            </a>
+            <a class="nav-link" id="best-sellers-tab" data-bs-toggle="pill" data-bs-target="#best-sellers" role="tab" aria-controls="best-sellers" aria-selected="false" data-bs-title="Mais Vendidos">
+                <i class="fas fa-medal d-block d-md-inline"></i>
+                <span class="d-block d-md-inline">Bestsellers</span>
+            </a>
+            <a class="nav-link" id="coming-soon-tab" data-bs-toggle="pill" data-bs-target="#coming-soon" role="tab" aria-controls="coming-soon" aria-selected="false" data-bs-title="Lançamentos Futuros">
+                <i class="fas fa-calendar-alt d-block d-md-inline"></i>
+                <span class="d-block d-md-inline">Lançamentos</span>
+            </a>
+            <a class="nav-link" id="contact-tab" data-bs-toggle="pill" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="false" data-bs-title="Fale Conosco">
+                <i class="fas fa-envelope d-block d-md-inline"></i>
+                <span class="d-block d-md-inline">Contato</span>
+            </a>
+            <a class="nav-link" id="about-tab" data-bs-toggle="pill" data-bs-target="#about" role="tab" aria-controls="about" aria-selected="false" data-bs-title="Sobre Nós">
+                <i class="fas fa-info-circle d-block d-md-inline"></i>
+                <span class="d-block d-md-inline">Sobre</span>
+            </a>
+        </nav>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3>Bem-vindo à Livraria Fantástica!</h3>
+                <p>Aqui você encontra uma vasta seleção de livros para todos os gostos. De clássicos a lançamentos, sua próxima leitura está aqui!</p>
+            </div>
+
+            <div class="tab-pane fade" id="best-sellers" role="tabpanel" aria-labelledby="best-sellers-tab">
+                <h3>Os Mais Vendidos do Mês</h3>
+                <ul>
+                    <li>**O Homem de Giz** - C. J. Tudor</li>
+                    <li>**Mindset: A Nova Psicologia do Sucesso** - Carol S. Dweck</li>
+                    <li>**Harry Potter e a Pedra Filosofal** - J.K. Rowling</li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="coming-soon" role="tabpanel" aria-labelledby="coming-soon-tab">
+                <h3>Próximos Lançamentos</h3>
+                <p>Fique de olho nas nossas novidades que chegam em breve!</p>
+                <ul>
+                    <li>**O Voo da Fênix** - Anna Clara</li>
+                    <li>**A Lenda de Kael** - Marcus Vinícius</li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <h3>Fale Conosco</h3>
+                <p>Entre em contato pelo e-mail: contato@livrariafantastica.com.br</p>
+            </div>
+
+            <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+                <h3>Sobre Nós</h3>
+                <p>Nossa missão é espalhar o amor pela leitura, oferecendo um catálogo diverso e acessível a todos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notificação</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+        <div id="timeToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Hora Atual</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para mostrar o spinner
+            function showSpinner() {
+                document.getElementById('spinner').classList.remove('d-none');
+                document.getElementById('main-content').classList.add('d-none');
+            }
+
+            // Função para esconder o spinner e mostrar o conteúdo
+            function hideSpinner() {
+                setTimeout(() => {
+                    document.getElementById('spinner').classList.add('d-none');
+                    document.getElementById('main-content').classList.remove('d-none');
+                }, 2000); // 2 segundos de atraso para simular o carregamento
+            }
+            
+            // Inicia o carregamento
+            showSpinner();
+            hideSpinner();
+
+            // Ativa os tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="pill"]'));
+            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    delay: { "show": 500, "hide": 100 }
+                });
+            });
+
+            // Adiciona um evento de click para mostrar o toast
+            const tabTriggers = document.querySelectorAll('[data-bs-toggle="pill"]');
+            tabTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(event) {
+                    const tabName = event.target.textContent.trim();
+                    const toastBody = document.querySelector('#liveToast .toast-body');
+                    toastBody.textContent = `Você está na seção "${tabName}".`;
+                    
+                    const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+                    toast.show();
+                });
+            });
+
+            // Desafio: Mostrar a hora atual a cada 10 segundos
+            function showTimeToast() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('pt-BR');
+                const timeToastBody = document.querySelector('#timeToast .toast-body');
+                timeToastBody.textContent = `Hora atual: ${timeString}`;
+                
+                const timeToast = new bootstrap.Toast(document.getElementById('timeToast'));
+                timeToast.show();
+            }
+
+            // Chama a função a cada 10 segundos
+            setInterval(showTimeToast, 10000); // 10000 ms = 10 segundos
+        });
+    </script>
+</body>
+</html>
